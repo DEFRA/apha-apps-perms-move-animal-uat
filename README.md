@@ -1,4 +1,4 @@
-# cdp-node-journey-test-template
+# apha-apps-perms-move-animal-uat
 
 ## Requirements
 
@@ -13,8 +13,8 @@
 - Write some journey tests using [webdriver.io](https://webdriver.io/docs/gettingstarted)
 - Configure `wdio.conf.js` to point at the service you want to test.
 - Run your tests, by either:
-  - Running the [Journey Tests Workflow](https://github.com/DEFRA/cdp-node-journey-test-template/actions/workflows/run-tests.yaml) manually via Github actions
-  - Add calls to the [Journey Tests Workflow](https://github.com/DEFRA/cdp-node-journey-test-template/blob/main/.github/workflows/run-tests.yaml) to the service repositories covered by the test suite
+  - Running the [Journey Tests Workflow](https://github.com/DEFRA/apha-apps-perms-move-animal-uat/actions/workflows/run-tests.yaml) manually via Github actions
+  - Add calls to the [Journey Tests Workflow](https://github.com/DEFRA/apha-apps-perms-move-animal-uat/blob/main/.github/workflows/run-tests.yaml) to the service repositories covered by the test suite
 
 ### Updating docker-compose.yaml
 
@@ -48,7 +48,7 @@ on:
       - completed
 jobs:
   test:
-    uses: defra/cdp-node-journey-test-template/.github/workflows/run-tests.yaml@main
+    uses: defra/apha-apps-perms-move-animal-uat/.github/workflows/run-tests.yaml@main
 ```
 
 This can be done for any number of services covered by your test suite, allowing for it to be run whenever any of those services publish a new version.
