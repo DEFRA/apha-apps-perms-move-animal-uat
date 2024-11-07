@@ -8,4 +8,10 @@ services:
       - "3000:80"
     environment:
       - PORT=80
+      - REDIS_HOST=redis
+
+  redis:
+    image: redis:7.2.3-alpine3.18
+    ports:
+      - "6379:6379"
 
