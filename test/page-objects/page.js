@@ -5,15 +5,9 @@ class Page {
     return $('h1')
   }
 
-  navItem(itemName) {
-    return $(`[data-testid="nav-${itemName}"]`)
-  }
-
-  async navIsActive(itemName) {
-    const navItem = await this.navItem(itemName)
-    const className = await navItem.getAttribute('class')
-
-    return className.includes('app-navigation__link--active')
+  async verifyPageHeading(headingText) {
+    await expect(this.pageHeading).toBeDisplayed()
+    await expect(this.pageHeading).toHaveText(headingText)
   }
 
   open(path) {
