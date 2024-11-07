@@ -14,7 +14,7 @@ jobs:
 
     steps:
       - name: Clone the test suite
-        run: git clone --depth 1 https://github.com/DEFRA/cdp-node-journey-test-template.git .
+        run: git clone --depth 1 https://github.com/DEFRA/apha-apps-perms-move-animal-ui.git .
 
       - uses: actions/setup-node@v3
         with:
