@@ -7,6 +7,7 @@ describe('Home page', () => {
     await landingPage.open('')
 
     await expect(browser).toHaveTitle('Home | Applications and permissions')
+    await landingPage.verifyPrivateBetaBanner()
     await landingPage.verifyPageHeading(
       'Apply for an animal disease movement licence'
     )
