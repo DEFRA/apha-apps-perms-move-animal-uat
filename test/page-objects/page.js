@@ -23,7 +23,7 @@ class Page {
   }
 
   async verifyPrivateBetaBanner(
-    feedbackText = 'feedback', 
+    feedbackText = 'feedback',
     bannerText = 'Private beta'
   ) {
     await this.validateElementVisibleAndText(this.feedbackLink, feedbackText)
