@@ -21,19 +21,34 @@ class Page {
     return $('#continue-button')
   }
 
+  // Reusable wait function
+  async waitForElement(element, options = { timeout: 10000, visible: true }) {
+    await element.waitForExist({ timeout: options.timeout })
+    if (options.visible) {
+      await element.waitForDisplayed({ timeout: options.timeout })
+    }
+  }
+
   async validateElementVisibleAndText(element, text) {
-    await element.waitForExist({ timeout: 10000 })
-    await expect(element).toBeDisplayed()
-    await expect(element).toHaveText(text)
+    try {
+      await this.waitForElement(element, { visible: true })
+      await expect(element).toHaveText(text)
+    } catch (error) {
+      throw new Error(
+        `Failed to validate text for element ${await element.selector}: ${error}`
+      )
+    }
   }
 
   async selectElement(element, hidden = false) {
-    if (!hidden) {
-      await expect(element).toBeDisplayed()
-    } else {
-      await expect(element).toBeExisting()
+    try {
+      await this.waitForElement(element, { visible: !hidden })
+      await element.click()
+    } catch (error) {
+      throw new Error(
+        `Failed to click element ${await element.selector}: ${error}`
+      )
     }
-    await element.click()
   }
 
   async verifyFeedbackLink(text) {
@@ -61,8 +76,13 @@ class Page {
   }
 
   async verifyRadioIsSelected(element) {
-    await expect(element).toBeExisting()
-    await expect(element).toBeSelected()
+    try {
+      await expect(element).toBeSelected()
+    } catch (error) {
+      throw new Error(
+        `Failed to verify radio button selection for ${await element.selector}: ${error}`
+      )
+    }
   }
 
   async open(path) {

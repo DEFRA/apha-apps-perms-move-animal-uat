@@ -10,8 +10,16 @@ const navigateThroughLandingPage = async () => {
 
 describe('Home page', () => {
   beforeEach('Navigate to landing page', async () => {
+    await browser.reloadSession()
     await landingPage.open('')
-    await landingPage.startNowButton.waitForExist({ timeout: 10000 })
+
+    // Wait until the page title is correct
+    await browser.waitUntil(
+      async () =>
+        (await browser.getTitle()) ===
+        'Apply for an animal disease movement licence | Applications and permissions',
+      { timeout: 10000, timeoutMsg: 'Failed to load the landing page' }
+    )
   })
 
   it('Should verify that the page errors when no option is selected', async () => {
