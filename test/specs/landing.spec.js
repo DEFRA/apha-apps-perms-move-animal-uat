@@ -3,10 +3,14 @@ import { browser, expect } from '@wdio/globals'
 import landingPage from '~/test/page-objects/landingPage'
 
 describe('Home page', () => {
-  it('Should verify start now button visible on landing page', async () => {
+  beforeEach('Navigate to landing page', async () => {
     await landingPage.open('')
+  })
 
-    await expect(browser).toHaveTitle('Home | Applications and permissions')
+  it('Should verify start now button visible on landing page', async () => {
+    await expect(browser).toHaveTitle(
+      'Apply for an animal disease movement licence | Applications and permissions'
+    )
     await landingPage.verifyPrivateBetaBanner()
     await landingPage.verifyPageHeading(
       'Apply for an animal disease movement licence'

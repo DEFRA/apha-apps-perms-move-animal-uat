@@ -13,9 +13,27 @@ class Page {
     return $('.govuk-phase-banner__content__tag')
   }
 
+  get backLink() {
+    return $('.govuk-back-link')
+  }
+
+  get continueButton() {
+    return $('#continue-button')
+  }
+
   async validateElementVisibleAndText(element, text) {
+    await element.waitForExist({ timeout: 10000 })
     await expect(element).toBeDisplayed()
     await expect(element).toHaveText(text)
+  }
+
+  async selectElement(element, hidden = false) {
+    if (!hidden) {
+      await expect(element).toBeDisplayed()
+    } else {
+      await expect(element).toBeExisting()
+    }
+    await element.click()
   }
 
   async verifyFeedbackLink(text) {
@@ -34,8 +52,21 @@ class Page {
     await this.validateElementVisibleAndText(this.pageHeading, headingText)
   }
 
-  open(path) {
-    return browser.url(path)
+  async selectBackLink() {
+    await this.selectElement(this.backLink)
+  }
+
+  async selectContinue() {
+    await this.selectElement(this.continueButton)
+  }
+
+  async verifyRadioIsSelected(element) {
+    await expect(element).toBeExisting()
+    await expect(element).toBeSelected()
+  }
+
+  async open(path) {
+    await browser.url(path)
   }
 }
 
