@@ -12,7 +12,7 @@ class ToFroFarmPage extends Page {
   }
 
   get pageError() {
-    return $('#toFromFarm-error')
+    return $('#onOffFarm-error')
   }
 
   async selectOnFarmAndContinue() {
