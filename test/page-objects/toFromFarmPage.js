@@ -2,7 +2,7 @@ import { $ } from '@wdio/globals'
 
 import { Page } from 'page-objects/page'
 
-class ToFroFarmPage extends Page {
+class ToFromFarmPage extends Page {
   get onThefarmRadio() {
     return $('#on-farm-radio')
   }
@@ -34,4 +34,4 @@ class ToFroFarmPage extends Page {
   }
 }
 
-export default new ToFroFarmPage()
+export default new ToFromFarmPage()

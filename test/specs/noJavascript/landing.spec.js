@@ -2,12 +2,12 @@ import { browser } from '@wdio/globals'
 
 import landingPage from '~/test/page-objects/landingPage'
 import toFromFarmPage from '~/test/page-objects/toFromFarmPage'
-import pageLoadHelper from '~/test/helpers/loadPageHelper'
+import loadPageAndVerifyTitle from '~/test/helpers/loadPageHelper'
 
 describe('Home page', () => {
   beforeEach('Navigate to landing page', async () => {
     await browser.reloadSession()
-    await pageLoadHelper('', landingPage.pageTitle)
+    await loadPageAndVerifyTitle('', landingPage.pageTitle)
   })
 
   it('Should verify that the back link isnt visble when javascript is disabled', async () => {

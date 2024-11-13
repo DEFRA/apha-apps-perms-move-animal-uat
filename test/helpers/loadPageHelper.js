@@ -1,6 +1,6 @@
 import { browser } from '@wdio/globals'
 
-const pageLoadHelper = async (path, pageTitle) => {
+const loadPageAndVerifyTitle = async (path, pageTitle) => {
   await browser.url(path)
   await browser.waitUntil(
     async () => (await browser.getTitle()) === pageTitle,
@@ -11,4 +11,4 @@ const pageLoadHelper = async (path, pageTitle) => {
   )
 }
 
-export default pageLoadHelper
+export default loadPageAndVerifyTitle

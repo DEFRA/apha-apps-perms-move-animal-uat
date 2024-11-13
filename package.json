@@ -9,7 +9,7 @@
   "license": "OGL-UK-3.0",
   "scripts": {
     "test": "wdio run wdioJS.conf.js",
-    "test-nojs": "wdio run wdioNJS.conf.js",
+    "test-nojs": "wdio run wdioNoJS.conf.js",
     "format": "prettier --write 'test/**/*.js' '**/*.{js,md,json,config.js}'",
     "format:check": "prettier --check 'test/**/*.js' '**/*.{js,md,json,config.js}'",
     "lint": "eslint .",

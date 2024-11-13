@@ -1,12 +1,15 @@
 import { browser, expect } from '@wdio/globals'
 
 import toFromFarmPage from '~/test/page-objects/toFromFarmPage'
-import pageLoadHelper from '~/test/helpers/loadPageHelper'
+import loadPageAndVerifyTitle from '~/test/helpers/loadPageHelper'
 
 describe('Home page', () => {
-  beforeEach('Navigate to landing page', async () => {
+  beforeEach('Navigate to or from farm page', async () => {
     await browser.reloadSession()
-    await pageLoadHelper(toFromFarmPage.urlPath, toFromFarmPage.pageTitle)
+    await loadPageAndVerifyTitle(
+      toFromFarmPage.urlPath,
+      toFromFarmPage.pageTitle
+    )
   })
 
   it('Should verify that the page errors when no option is selected', async () => {
