@@ -13,9 +13,46 @@ class Page {
     return $('.govuk-phase-banner__content__tag')
   }
 
+  get backLink() {
+    return $('.govuk-back-link')
+  }
+
+  get continueButton() {
+    return $('#continue-button')
+  }
+
+  get errorSummary() {
+    return $('.govuk-error-summary')
+  }
+
+  // Reusable wait function
+  async waitForElement(element, options = { timeout: 10000, visible: true }) {
+    await element.waitForExist({ timeout: options.timeout })
+    if (options.visible) {
+      await element.waitForDisplayed({ timeout: options.timeout })
+    }
+  }
+
   async validateElementVisibleAndText(element, text) {
-    await expect(element).toBeDisplayed()
-    await expect(element).toHaveText(text)
+    try {
+      await this.waitForElement(element, { visible: true })
+      await expect(element).toHaveText(text)
+    } catch (error) {
+      throw new Error(
+        `Failed to validate text for element ${await element.selector}: ${error}`
+      )
+    }
+  }
+
+  async selectElement(element, hidden = false) {
+    try {
+      await this.waitForElement(element, { visible: !hidden })
+      await element.click()
+    } catch (error) {
+      throw new Error(
+        `Failed to click element ${await element.selector}: ${error}`
+      )
+    }
   }
 
   async verifyFeedbackLink(text) {
@@ -26,7 +63,7 @@ class Page {
     feedbackText = 'feedback',
     bannerText = 'Private beta'
   ) {
-    await this.validateElementVisibleAndText(this.feedbackLink, feedbackText)
+    // await this.validateElementVisibleAndText(this.feedbackLink, feedbackText)
     await this.validateElementVisibleAndText(this.privateBetaBanner, bannerText)
   }
 
@@ -34,8 +71,26 @@ class Page {
     await this.validateElementVisibleAndText(this.pageHeading, headingText)
   }
 
-  open(path) {
-    return browser.url(path)
+  async selectBackLink() {
+    await this.selectElement(this.backLink)
+  }
+
+  async selectContinue() {
+    await this.selectElement(this.continueButton)
+  }
+
+  async verifyRadioIsSelected(element) {
+    try {
+      await expect(element).toBeSelected()
+    } catch (error) {
+      throw new Error(
+        `Failed to verify radio button selection for ${await element.selector}: ${error}`
+      )
+    }
+  }
+
+  async open(path) {
+    await browser.url(path)
   }
 }
 

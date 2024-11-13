@@ -7,9 +7,15 @@ class LandingPage extends Page {
     return $('[data-testid="start-now-btn"]')
   }
 
-  async verifyStartNowButton(text) {
-    await expect(this.startNowButton).toBeDisplayed()
-    await expect(this.startNowButton).toHaveText(text)
+  get pageTitle() {
+    return 'Apply for an animal disease movement licence'
+  }
+
+  async verifyStartNowButton(text, click = false) {
+    await super.validateElementVisibleAndText(this.startNowButton, text)
+    if (click) {
+      await super.selectElement(this.startNowButton)
+    }
   }
 }
 
