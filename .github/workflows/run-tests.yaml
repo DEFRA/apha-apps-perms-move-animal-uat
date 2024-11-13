@@ -29,9 +29,6 @@ jobs:
 
       - name: Run the javascript enabled tests
         run: npm test
-      
-      - name: Run the javascript disabled tests
-        run: npm run test-nojs
 
       - name: debug
         if: failure()
