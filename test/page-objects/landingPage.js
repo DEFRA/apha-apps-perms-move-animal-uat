@@ -7,6 +7,10 @@ class LandingPage extends Page {
     return $('[data-testid="start-now-btn"]')
   }
 
+  get pageTitle() {
+    return 'Apply for an animal disease movement licence | Applications and permissions'
+  }
+
   async verifyStartNowButton(text, click = false) {
     await super.validateElementVisibleAndText(this.startNowButton, text)
     if (click) {

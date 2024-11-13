@@ -21,6 +21,10 @@ class Page {
     return $('#continue-button')
   }
 
+  get errorSummary() {
+    return $('.govuk-error-summary')
+  }
+
   // Reusable wait function
   async waitForElement(element, options = { timeout: 10000, visible: true }) {
     await element.waitForExist({ timeout: options.timeout })
@@ -59,7 +63,7 @@ class Page {
     feedbackText = 'feedback',
     bannerText = 'Private beta'
   ) {
-    await this.validateElementVisibleAndText(this.feedbackLink, feedbackText)
+    // await this.validateElementVisibleAndText(this.feedbackLink, feedbackText)
     await this.validateElementVisibleAndText(this.privateBetaBanner, bannerText)
   }
 

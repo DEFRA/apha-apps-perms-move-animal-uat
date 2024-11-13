@@ -27,8 +27,11 @@ jobs:
       - name: Start docker compose
         run: docker compose up --wait-timeout 300 -d --quiet-pull
 
-      - name: Run the tests
+      - name: Run the javascript enabled tests
         run: npm test
+      
+      - name: Run the javascript disabled tests
+        run: npm run test-nojs
 
       - name: debug
         if: failure()

@@ -1,4 +1,4 @@
-import { browser, expect } from '@wdio/globals'
+import { browser } from '@wdio/globals'
 
 import landingPage from '~/test/page-objects/landingPage'
 import toFromFarmPage from '~/test/page-objects/toFromFarmPage'
@@ -10,22 +10,12 @@ describe('Home page', () => {
     await pageLoadHelper('', landingPage.pageTitle)
   })
 
-  it('Should verify start now button visible on landing page', async () => {
-    await landingPage.verifyPrivateBetaBanner()
-    await landingPage.verifyPageHeading(
-      'Apply for an animal disease movement licence'
-    )
-    await landingPage.verifyStartNowButton('Start now')
-  })
-
-  it('Should verify that start now navigates you to first question and back link returns you', async () => {
+  it('Should verify that the back link isnt visble when javascript is disabled', async () => {
     await landingPage.verifyStartNowButton('Start now', true)
     await expect(browser).toHaveTitle(toFromFarmPage.pageTitle)
     await toFromFarmPage.verifyPageHeading(
       'Are you moving the cattle on or off your farm?'
     )
-    await toFromFarmPage.selectBackLink()
-
-    await landingPage.verifyStartNowButton('Start now')
+    await expect(await toFromFarmPage.backLink.isDisplayed()).toBe(false)
   })
 })

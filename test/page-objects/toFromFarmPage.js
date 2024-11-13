@@ -15,6 +15,14 @@ class ToFroFarmPage extends Page {
     return $('#onOffFarm-error')
   }
 
+  get pageTitle() {
+    return 'Are you moving the cattle on or off your farm?'
+  }
+
+  get urlPath() {
+    return 'to-or-from-own-premises'
+  }
+
   async selectOnFarmAndContinue() {
     await super.selectElement(this.onThefarmRadio, true)
     await super.selectContinue()

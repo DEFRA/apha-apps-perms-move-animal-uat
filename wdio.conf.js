@@ -1,3 +1,4 @@
+import testConfig from './config/config.js'
 const debug = process.env.DEBUG
 
 export const config = {
@@ -31,7 +32,7 @@ export const config = {
   // then the current working directory is where your `package.json` resides, so `wdio`
   // will be called from there.
   //
-  specs: ['./test/specs/**/*.js'],
+  specs: [],
   // Patterns to exclude.
   exclude: [
     // 'path/to/excluded/files'
@@ -60,15 +61,7 @@ export const config = {
   // https://saucelabs.com/platform/platform-configurator
   //
 
-  capabilities: [
-    {
-      browserName: 'chrome',
-      browserVersion: 'stable',
-      'goog:chromeOptions': {
-        args: ['headless', 'disable-gpu']
-      }
-    }
-  ],
+  capabilities: [],
 
   execArgv: debug ? ['--inspect'] : [],
 
@@ -79,7 +72,7 @@ export const config = {
   // Define all options that are relevant for the WebdriverIO instance here
   //
   // Level of logging verbosity: trace | debug | info | warn | error | silent
-  logLevel: 'info',
+  logLevel: testConfig.logLevel,
   //
   // Set specific log levels per logger
   // loggers:
@@ -97,18 +90,18 @@ export const config = {
   //
   // If you only want to run your tests until a specific amount of tests have failed use
   // bail (default is 0 - don't bail, run all tests).
-  bail: 0,
+  bail: testConfig.bail,
   //
   // Default timeout for all waitFor* commands.
-  waitforTimeout: 10000,
-  waitforInterval: 200,
+  waitforTimeout: testConfig.waitForTimeout,
+  waitforInterval: testConfig.waitforInterval,
   //
   // Default timeout in milliseconds for request
   // if browser driver or grid doesn't send response
-  connectionRetryTimeout: 120000,
+  connectionRetryTimeout: testConfig.connectionRetryTimeout,
   //
   // Default request retries count
-  connectionRetryCount: 3,
+  connectionRetryCount: testConfig.connectionRetryCount,
   //
   // Test runner services
   // Services take over a specific job you don't want to take care of. They enhance
@@ -125,13 +118,13 @@ export const config = {
   framework: 'mocha',
   //
   // The number of times to retry the entire specfile when it fails as a whole
-  // specFileRetries: 1,
+  specFileRetries: testConfig.specFileRetries,
   //
   // Delay in seconds between the spec file retry attempts
   // specFileRetriesDelay: 0,
   //
   // Whether or not retried spec files should be retried immediately or deferred to the end of the queue
-  // specFileRetriesDeferred: false,
+  specFileRetriesDeferred: testConfig.specFileRetriesDeferred,
   //
   // Test reporter for stdout.
   // The only one supported by default is 'dot'
