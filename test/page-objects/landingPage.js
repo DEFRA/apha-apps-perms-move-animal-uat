@@ -8,7 +8,7 @@ class LandingPage extends Page {
   }
 
   get pageTitle() {
-    return 'Apply for an animal disease movement licence | Applications and permissions'
+    return 'Apply for an animal disease movement licence'
   }
 
   async verifyStartNowButton(text, click = false) {
