@@ -23,7 +23,7 @@ describe('Home page', () => {
   })
 
   it('Should choose an option and check its maintained', async () => {
-    //To do: update this test when new page introduced
+    // To do: update this test when new page introduced
     await toFromFarmPage.selectOffFarmAndContinue()
     await browser.refresh()
     await expect(toFromFarmPage.offThefarmRadio).toBeSelected()
