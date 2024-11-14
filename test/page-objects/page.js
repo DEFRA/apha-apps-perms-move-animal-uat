@@ -39,7 +39,7 @@ class Page {
       await expect(element).toHaveTextContaining(text)
     } catch (error) {
       throw new Error(
-        `Failed to validate text for element ${await element.selector}: ${error}`
+        `Failed to validate text for element - ${await element.selector}: ${error}`
       )
     }
   }
@@ -50,7 +50,7 @@ class Page {
       await element.click()
     } catch (error) {
       throw new Error(
-        `Failed to click element ${await element.selector}: ${error}`
+        `Failed to click element - ${await element.selector}: ${error}`
       )
     }
   }
@@ -61,7 +61,7 @@ class Page {
       await element.setValue(text)
     } catch (error) {
       throw new Error(
-        `Failed to click element ${await element.selector}: ${error}`
+        `Failed type command on element - ${await element.selector}: ${error}`
       )
     }
   }
@@ -95,7 +95,7 @@ class Page {
       await expect(element).toBeSelected()
     } catch (error) {
       throw new Error(
-        `Failed to verify radio button selection for ${await element.selector}: ${error}`
+        `Failed to verify radio button selection for element - ${await element.selector}: ${error}`
       )
     }
   }
