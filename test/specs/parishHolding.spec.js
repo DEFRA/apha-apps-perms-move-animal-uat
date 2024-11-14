@@ -42,6 +42,27 @@ describe('Home page', () => {
     )
   })
 
+  it('Should verify that page errors when too much is entered', async () => {
+    await parishHoldingErrorTest(
+      'te/tes/test',
+      'Enter the CPH number in the correct format, for example, 12/345/6789'
+    )
+  })
+
+  it('Should verify that page errors when too much is entered', async () => {
+    await parishHoldingErrorTest(
+      '12 / 345 / 6789',
+      'Enter the CPH number in the correct format, for example, 12/345/6789'
+    )
+  })
+
+  it('Should verify that page errors when too much is entered', async () => {
+    await parishHoldingErrorTest(
+      '12 / tes / 67dh',
+      'Enter the CPH number in the correct format, for example, 12/345/6789'
+    )
+  })
+
   it('Should input correct number format and continue without producing an error', async () => {
     await ParishHoldingNumberPage.inputParishHoldingHNumberAndContinue(
       '12/345/6789'
