@@ -23,6 +23,15 @@ class ParishHoldingNumberPage extends Page {
     await super.typeIntoElement(this.cphNumberInput, text)
     await super.selectContinue()
   }
+
+  async parishHoldingErrorTest(textInput, errorMessage) {
+    await this.inputParishHoldingHNumberAndContinue(textInput)
+    await this.validateElementVisibleAndText(
+      this.cphInputFieldError,
+      errorMessage
+    )
+    await this.validateElementVisibleAndText(this.errorSummary, errorMessage)
+  }
 }
 
 export default new ParishHoldingNumberPage()

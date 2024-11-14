@@ -3,18 +3,6 @@ import { browser } from '@wdio/globals'
 import loadPageAndVerifyTitle from '~/test/helpers/loadPageHelper'
 import ParishHoldingNumberPage from '../page-objects/parishHoldingNumberPage'
 
-const parishHoldingErrorTest = async (textInput, errorMessage) => {
-  await ParishHoldingNumberPage.inputParishHoldingHNumberAndContinue(textInput)
-  await ParishHoldingNumberPage.validateElementVisibleAndText(
-    ParishHoldingNumberPage.cphInputFieldError,
-    errorMessage
-  )
-  await ParishHoldingNumberPage.validateElementVisibleAndText(
-    ParishHoldingNumberPage.errorSummary,
-    errorMessage
-  )
-}
-
 describe('Home page', () => {
   beforeEach('Parish holding page test', async () => {
     await browser.reloadSession()
@@ -25,39 +13,42 @@ describe('Home page', () => {
   })
 
   it('Should verify that page errors when nothing is entered', async () => {
-    await parishHoldingErrorTest('', 'Enter the farm or premises CPH number')
+    await ParishHoldingNumberPage.parishHoldingErrorTest(
+      '',
+      'Enter the farm or premises CPH number'
+    )
   })
 
   it('Should verify that page errors when not enough is entered', async () => {
-    await parishHoldingErrorTest(
+    await ParishHoldingNumberPage.parishHoldingErrorTest(
       '12/345/678',
       'Enter the CPH number in the correct format, for example, 12/345/6789'
     )
   })
 
   it('Should verify that page errors when too much is entered', async () => {
-    await parishHoldingErrorTest(
+    await ParishHoldingNumberPage.parishHoldingErrorTest(
       '12/345/67891',
       'Enter the CPH number in the correct format, for example, 12/345/6789'
     )
   })
 
   it('Should verify that page errors when letters are entered', async () => {
-    await parishHoldingErrorTest(
+    await ParishHoldingNumberPage.parishHoldingErrorTest(
       'te/tes/test',
       'Enter the CPH number in the correct format, for example, 12/345/6789'
     )
   })
 
   it('Should verify that page errors spaces are included', async () => {
-    await parishHoldingErrorTest(
+    await ParishHoldingNumberPage.parishHoldingErrorTest(
       '12 / 345 / 6789',
       'Enter the CPH number in the correct format, for example, 12/345/6789'
     )
   })
 
   it('Should verify that page errors when letters and spaces and numbers are included', async () => {
-    await parishHoldingErrorTest(
+    await ParishHoldingNumberPage.parishHoldingErrorTest(
       '12 / tes / 67dh',
       'Enter the CPH number in the correct format, for example, 12/345/6789'
     )
@@ -76,6 +67,7 @@ describe('Home page', () => {
     await ParishHoldingNumberPage.inputParishHoldingHNumberAndContinue(
       validInput
     )
+    await expect(ParishHoldingNumberPage.cphInputFieldError).not.toBeDisplayed()
     await browser.back()
     await expect(ParishHoldingNumberPage.cphNumberInput).toHaveValue(validInput)
   })
