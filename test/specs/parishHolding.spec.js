@@ -49,4 +49,13 @@ describe('Home page', () => {
     await expect(ParishHoldingNumberPage.cphInputFieldError).not.toBeDisplayed()
     await expect(ParishHoldingNumberPage.errorSummary).not.toBeDisplayed()
   })
+
+  it('Should choose an option and check its maintained', async () => {
+    const validInput = '54/321/1234'
+    await ParishHoldingNumberPage.inputParishHoldingHNumberAndContinue(
+      validInput
+    )
+    await browser.back()
+    await expect(ParishHoldingNumberPage.cphNumberInput).toHaveValue(validInput)
+  })
 })
