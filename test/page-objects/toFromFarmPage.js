@@ -8,14 +8,14 @@ class ToFromFarmPage extends Page {
   }
 
   get offThefarmRadio() {
-    return $('#on-farm-radio')
+    return $('#off-farm-radio')
   }
 
   get pageError() {
     return $('#onOffFarm-error')
   }
 
-  get pageTitle() {
+  get toFromFarmTitle() {
     return 'Are you moving the cattle on or off your farm?'
   }
 

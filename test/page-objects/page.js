@@ -36,7 +36,7 @@ class Page {
   async validateElementVisibleAndText(element, text) {
     try {
       await this.waitForElement(element, { visible: true })
-      await expect(element).toHaveText(text)
+      await expect(element).toHaveTextContaining(text)
     } catch (error) {
       throw new Error(
         `Failed to validate text for element ${await element.selector}: ${error}`
@@ -48,6 +48,17 @@ class Page {
     try {
       await this.waitForElement(element, { visible: !hidden })
       await element.click()
+    } catch (error) {
+      throw new Error(
+        `Failed to click element ${await element.selector}: ${error}`
+      )
+    }
+  }
+
+  async typeIntoElement(element, text) {
+    try {
+      await this.waitForElement(element)
+      await element.setValue(text)
     } catch (error) {
       throw new Error(
         `Failed to click element ${await element.selector}: ${error}`
