@@ -25,6 +25,10 @@ class Page {
     return $('.govuk-error-summary')
   }
 
+  async getPageTitle() {
+    return await browser.getTitle()
+  }
+
   // Reusable wait function
   async waitForElement(element, options = { timeout: 10000, visible: true }) {
     await element.waitForExist({ timeout: options.timeout })
@@ -103,7 +107,7 @@ class Page {
   async verifyErrorsOnPage(element, errorMessage) {
     await this.validateElementVisibleAndText(element, errorMessage)
     await this.validateElementVisibleAndText(this.errorSummary, errorMessage)
-    await expect(await browser.getTitle()).toContain('Error:')
+    await expect(await browser.getTitle()).toMatch(/^Error:/)
   }
 
   async open(path) {

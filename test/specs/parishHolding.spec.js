@@ -12,7 +12,7 @@ describe('Home page', () => {
     )
   })
 
-  it.only('Should verify that page errors when nothing is entered', async () => {
+  it('Should verify that page errors when nothing is entered', async () => {
     await ParishHoldingNumberPage.parishHoldingErrorTest(
       '',
       'Enter the farm or premises CPH number'
