@@ -25,6 +25,10 @@ class Page {
     return $('.govuk-error-summary')
   }
 
+  async getPageTitle() {
+    return await browser.getTitle()
+  }
+
   // Reusable wait function
   async waitForElement(element, options = { timeout: 10000, visible: true }) {
     await element.waitForExist({ timeout: options.timeout })
@@ -36,10 +40,10 @@ class Page {
   async validateElementVisibleAndText(element, text) {
     try {
       await this.waitForElement(element, { visible: true })
-      await expect(element).toHaveText(text)
+      await expect(element).toHaveTextContaining(text)
     } catch (error) {
       throw new Error(
-        `Failed to validate text for element ${await element.selector}: ${error}`
+        `Failed to validate text for element - ${await element.selector}: ${error}`
       )
     }
   }
@@ -50,7 +54,18 @@ class Page {
       await element.click()
     } catch (error) {
       throw new Error(
-        `Failed to click element ${await element.selector}: ${error}`
+        `Failed to click element - ${await element.selector}: ${error}`
+      )
+    }
+  }
+
+  async typeIntoElement(element, text) {
+    try {
+      await this.waitForElement(element)
+      await element.setValue(text)
+    } catch (error) {
+      throw new Error(
+        `Failed type command on element - ${await element.selector}: ${error}`
       )
     }
   }
@@ -84,9 +99,15 @@ class Page {
       await expect(element).toBeSelected()
     } catch (error) {
       throw new Error(
-        `Failed to verify radio button selection for ${await element.selector}: ${error}`
+        `Failed to verify radio button selection for element - ${await element.selector}: ${error}`
       )
     }
+  }
+
+  async verifyErrorsOnPage(element, errorMessage) {
+    await this.validateElementVisibleAndText(element, errorMessage)
+    await this.validateElementVisibleAndText(this.errorSummary, errorMessage)
+    await expect(await browser.getTitle()).toMatch(/^Error:/)
   }
 
   async open(path) {

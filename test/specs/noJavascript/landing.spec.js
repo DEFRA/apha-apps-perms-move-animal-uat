@@ -12,7 +12,7 @@ describe('Home page', () => {
 
   it('Should verify that the back link isnt visble when javascript is disabled', async () => {
     await landingPage.verifyStartNowButton('Start now', true)
-    await expect(browser).toHaveTitle(toFromFarmPage.pageTitle)
+    await expect(browser).toHaveTitle(toFromFarmPage.toFromFarmTitle)
     await toFromFarmPage.verifyPageHeading(
       'Are you moving the cattle on or off your farm?'
     )
