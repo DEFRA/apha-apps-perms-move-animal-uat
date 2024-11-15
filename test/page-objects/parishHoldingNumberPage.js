@@ -26,11 +26,7 @@ class ParishHoldingNumberPage extends Page {
 
   async parishHoldingErrorTest(textInput, errorMessage) {
     await this.inputParishHoldingHNumberAndContinue(textInput)
-    await this.validateElementVisibleAndText(
-      this.cphInputFieldError,
-      errorMessage
-    )
-    await this.validateElementVisibleAndText(this.errorSummary, errorMessage)
+    await super.verifyErrorsOnPage(this.cphInputFieldError, errorMessage)
   }
 }
 

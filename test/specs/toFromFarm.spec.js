@@ -14,13 +14,7 @@ describe('Home page', () => {
   })
 
   it('Should verify that the page errors when no option is selected', async () => {
-    await toFromFarmPage.selectContinue()
-    await toFromFarmPage.validateElementVisibleAndText(
-      toFromFarmPage.pageError,
-      'Select if you are moving cattle on or off your farm'
-    )
-    await toFromFarmPage.validateElementVisibleAndText(
-      toFromFarmPage.errorSummary,
+    await toFromFarmPage.toFromFarmErrorTest(
       'Select if you are moving cattle on or off your farm'
     )
   })

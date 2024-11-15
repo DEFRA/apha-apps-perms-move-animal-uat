@@ -32,6 +32,11 @@ class ToFromFarmPage extends Page {
     await super.selectElement(this.offThefarmRadio, true)
     await super.selectContinue()
   }
+
+  async toFromFarmErrorTest(errorMessage) {
+    await super.selectContinue()
+    await super.verifyErrorsOnPage(this.pageError, errorMessage)
+  }
 }
 
 export default new ToFromFarmPage()

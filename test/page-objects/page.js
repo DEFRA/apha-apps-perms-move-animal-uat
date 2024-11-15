@@ -100,6 +100,12 @@ class Page {
     }
   }
 
+  async verifyErrorsOnPage(element, errorMessage) {
+    await this.validateElementVisibleAndText(element, errorMessage)
+    await this.validateElementVisibleAndText(this.errorSummary, errorMessage)
+    await expect(await browser.getTitle()).toContain('Error:')
+  }
+
   async open(path) {
     await browser.url(path)
   }
