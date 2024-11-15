@@ -9,6 +9,7 @@ services:
     environment:
       - PORT=80
       - REDIS_HOST=redis
+      - NODE_ENV=development
 
   redis:
     image: redis:7.2.3-alpine3.18
