@@ -8,7 +8,7 @@ class LandingPage extends Page {
   }
 
   get pageTitle() {
-    return 'Apply for an animal disease movement licence'
+    return 'Apply for a Bovine Tuberculosis (TB) movement licence'
   }
 
   async verifyStartNowButton(text, click = false) {
