@@ -3,6 +3,7 @@ import { browser, expect } from '@wdio/globals'
 import toFromFarmPage from '~/test/page-objects/toFromFarmPage'
 import loadPageAndVerifyTitle from '~/test/helpers/loadPageHelper'
 import parishHoldingNumberPage from '../page-objects/parishHoldingNumberPage'
+import exitPage from '../page-objects/exitPage'
 
 describe('Home page', () => {
   beforeEach('Navigate to or from farm page', async () => {
@@ -23,6 +24,7 @@ describe('Home page', () => {
     await toFromFarmPage.selectOnFarmAndContinue()
     await expect(toFromFarmPage.pageError).not.toBeDisplayed()
     await expect(toFromFarmPage.errorSummary).not.toBeDisplayed()
+    await exitPage.verifyPageHeading(exitPage.exitPageHeading)
   })
 
   it('Should choose an option and check its maintained', async () => {
