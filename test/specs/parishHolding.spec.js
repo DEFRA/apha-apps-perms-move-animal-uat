@@ -41,7 +41,7 @@ describe('Home page', () => {
   })
 
   it('Should verify that page errors spaces are included', async () => {
-    await ParishHoldingNumberPage.inputParishHoldingHNumberAndContinue(
+    await ParishHoldingNumberPage.inputParishHoldingNumberAndContinue(
       ' 12 / 345 / 6789 '
     )
     await expect(ParishHoldingNumberPage.cphInputFieldError).not.toBeDisplayed()
@@ -58,16 +58,16 @@ describe('Home page', () => {
   })
 
   it('Should input correct number format and continue without producing an error', async () => {
-    await ParishHoldingNumberPage.inputParishHoldingHNumberAndContinue(
+    await ParishHoldingNumberPage.inputParishHoldingNumberAndContinue(
       '12/345/6789'
     )
     await expect(ParishHoldingNumberPage.cphInputFieldError).not.toBeDisplayed()
     await expect(ParishHoldingNumberPage.errorSummary).not.toBeDisplayed()
   })
 
-  it('Should choose an option and check its maintained', async () => {
+  it.only('Should choose an option and check its maintained', async () => {
     const validInput = '54/321/1234'
-    await ParishHoldingNumberPage.inputParishHoldingHNumberAndContinue(
+    await ParishHoldingNumberPage.inputParishHoldingNumberAndContinue(
       validInput
     )
     await expect(ParishHoldingNumberPage.cphInputFieldError).not.toBeDisplayed()

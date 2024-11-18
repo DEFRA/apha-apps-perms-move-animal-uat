@@ -12,7 +12,7 @@ describe('Full journey test 1', () => {
   it('Should navigate you through the first journey happy path', async () => {
     await landingPage.verifyStartNowButton('Start now', true)
     await toFromFarmPage.selectOffFarmAndContinue()
-    await parishHoldingNumberPage.inputParishHoldingHNumberAndContinue(
+    await parishHoldingNumberPage.inputParishHoldingNumberAndContinue(
       '12/345/6789'
     )
   })
