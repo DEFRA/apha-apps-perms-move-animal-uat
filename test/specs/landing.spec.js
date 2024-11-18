@@ -13,7 +13,7 @@ describe('Home page', () => {
   it('Should verify start now button visible on landing page', async () => {
     await landingPage.verifyPrivateBetaBanner()
     await landingPage.verifyPageHeading(
-      'Apply for an animal disease movement licence'
+      'Apply for a Bovine Tuberculosis (TB) movement licence'
     )
     await landingPage.verifyStartNowButton('Start now')
   })
