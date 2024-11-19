@@ -40,7 +40,7 @@ describe('Home page', () => {
     )
   })
 
-  it('Should verify that page errors spaces are included', async () => {
+  it('Should verify that input automatically trims whitespace', async () => {
     await ParishHoldingNumberPage.inputParishHoldingNumberAndContinue(
       ' 12 / 345 / 6789 '
     )
