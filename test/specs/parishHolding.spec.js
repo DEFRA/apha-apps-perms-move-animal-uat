@@ -65,7 +65,7 @@ describe('Home page', () => {
     await expect(ParishHoldingNumberPage.errorSummary).not.toBeDisplayed()
   })
 
-  it.only('Should choose an option and check its maintained', async () => {
+  it('Should choose an option and check its maintained', async () => {
     const validInput = '54/321/1234'
     await ParishHoldingNumberPage.inputParishHoldingNumberAndContinue(
       validInput
