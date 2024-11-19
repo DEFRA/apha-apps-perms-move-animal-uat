@@ -15,6 +15,7 @@ services:
       - SESSION_CACHE_ENGINE=redis
       - SESSION_COOKIE_SECURE=true
       - USE_SINGLE_INSTANCE_CACHE=true
+      - REDIS_TLS=true
 
   redis:
     image: redis:7.2.3-alpine3.18
