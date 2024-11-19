@@ -14,7 +14,7 @@ describe('Home page', () => {
     await landingPage.verifyStartNowButton('Start now', true)
     await expect(browser).toHaveTitle(toFromFarmPage.toFromFarmTitle)
     await toFromFarmPage.verifyPageHeading(
-      'Are you moving the cattle on or off your farm?'
+      'Are you moving the cattle on or off your farm or premises?'
     )
     await expect(await toFromFarmPage.backLink.isDisplayed()).toBe(false)
   })
