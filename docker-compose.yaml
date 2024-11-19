@@ -11,6 +11,7 @@ services:
       - REDIS_HOST=redis
       - NODE_ENV=development
       - ENABLE_SECURE_CONTEXT=1
+      - ENABLE_METRICS=1
 
   redis:
     image: redis:7.2.3-alpine3.18
