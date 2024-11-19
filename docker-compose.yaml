@@ -13,6 +13,7 @@ services:
       - ENABLE_SECURE_CONTEXT=1
       - ENABLE_METRICS=1
       - SESSION_CACHE_ENGINE=redis
+      - SESSION_COOKIE_SECURE=1
 
   redis:
     image: redis:7.2.3-alpine3.18
