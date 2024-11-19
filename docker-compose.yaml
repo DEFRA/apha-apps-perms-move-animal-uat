@@ -9,11 +9,12 @@ services:
     environment:
       - PORT=80
       - REDIS_HOST=redis
-      - NODE_ENV=production
-      - ENABLE_SECURE_CONTEXT=1
-      - ENABLE_METRICS=1
+      - NODE_ENV=development
+      - ENABLE_SECURE_CONTEXT=true
+      - ENABLE_METRICS=true
       - SESSION_CACHE_ENGINE=redis
-      - SESSION_COOKIE_SECURE=1
+      - SESSION_COOKIE_SECURE=true
+      - USE_SINGLE_INSTANCE_CACHE=true
 
   redis:
     image: redis:7.2.3-alpine3.18
