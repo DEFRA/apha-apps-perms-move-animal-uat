@@ -9,7 +9,7 @@ services:
     environment:
       - PORT=80
       - REDIS_HOST=redis
-      - NODE_ENV=development
+      - NODE_ENV=production
       - ENABLE_SECURE_CONTEXT=1
       - ENABLE_METRICS=1
       - SESSION_CACHE_ENGINE=redis
