@@ -45,6 +45,8 @@ describe('Paris holding page test', () => {
       ' 12 / 345 / 6789 '
     )
     await expect(ParishHoldingNumberPage.cphInputFieldError).not.toBeDisplayed()
+    await ParishHoldingNumberPage.selectBackLink()
+    await browser.refresh()
     await expect(ParishHoldingNumberPage.cphNumberInput).toHaveValue(
       '12/345/6789'
     )
@@ -71,7 +73,7 @@ describe('Paris holding page test', () => {
       validInput
     )
     await expect(ParishHoldingNumberPage.cphInputFieldError).not.toBeDisplayed()
-    await browser.back()
+    await ParishHoldingNumberPage.selectBackLink()
     await expect(ParishHoldingNumberPage.cphNumberInput).toHaveValue(validInput)
   })
 })
