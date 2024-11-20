@@ -23,6 +23,10 @@ class ParishHoldingNumberPage extends Page {
     return 'Enter the CPH number in the correct format, for example, 12/345/6789'
   }
 
+  get cphSummaryErrorLink() {
+    return $('[href="#cph-number"]')
+  }
+
   get noInputError() {
     return 'Enter the farm or premises CPH number'
   }
@@ -35,6 +39,10 @@ class ParishHoldingNumberPage extends Page {
   async parishHoldingErrorTest(textInput, errorMessage) {
     await this.inputParishHoldingNumberAndContinue(textInput)
     await super.verifyErrorsOnPage(this.cphInputFieldError, errorMessage)
+    await super.verifySummaryErrorLink(
+      this.cphSummaryErrorLink,
+      this.cphNumberInput
+    )
   }
 }
 
