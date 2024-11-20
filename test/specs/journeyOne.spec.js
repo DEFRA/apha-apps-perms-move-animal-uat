@@ -2,11 +2,16 @@ import landingPage from '~/test/page-objects/landingPage'
 import toFromFarmPage from '~/test/page-objects/toFromFarmPage'
 import loadPageAndVerifyTitle from '~/test/helpers/loadPageHelper'
 import parishHoldingNumberPage from '../page-objects/parishHoldingNumberPage'
+import newAddressPage from '../page-objects/newAddressPage'
+
+const lineOne = '37 Made up lane'
+const townOrCity = 'Gotham'
+const postcode = 'SW1A 2AA'
 
 describe('Full journey test 1', () => {
   beforeEach('Reset browser state and navigate to page', async () => {
     await browser.reloadSession()
-    await loadPageAndVerifyTitle('', landingPage.pageTitle)
+    await loadPageAndVerifyTitle('', landingPage.landingPageTitleText)
   })
 
   it('Should navigate you through the first journey happy path', async () => {
@@ -15,5 +20,10 @@ describe('Full journey test 1', () => {
     await parishHoldingNumberPage.inputParishHoldingNumberAndContinue(
       '12/345/6789'
     )
+    await newAddressPage.fillFormFieldsAndSubmit({
+      lineOne,
+      townOrCity,
+      postcode
+    })
   })
 })

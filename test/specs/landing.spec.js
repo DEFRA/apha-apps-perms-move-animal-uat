@@ -7,23 +7,19 @@ import loadPageAndVerifyTitle from '~/test/helpers/loadPageHelper'
 describe('Landing page test', () => {
   beforeEach('Reset browser state and navigate to page', async () => {
     await browser.reloadSession()
-    await loadPageAndVerifyTitle('', landingPage.pageTitle)
+    await loadPageAndVerifyTitle('', landingPage.landingPageTitleText)
   })
 
   it('Should verify start now button visible on landing page', async () => {
     await landingPage.verifyPrivateBetaBanner()
-    await landingPage.verifyPageHeading(
-      'Apply for a Bovine Tuberculosis (TB) movement licence'
-    )
+    await landingPage.verifyPageHeading(landingPage.landingPageTitleText)
     await landingPage.verifyStartNowButton('Start now')
   })
 
   it('Should verify that start now navigates you to first question and back link returns you', async () => {
     await landingPage.verifyStartNowButton('Start now', true)
     await expect(browser).toHaveTitle(toFromFarmPage.toFromFarmTitle)
-    await toFromFarmPage.verifyPageHeading(
-      'Are you moving the cattle on or off your farm or premises?'
-    )
+    await toFromFarmPage.verifyPageHeading(toFromFarmPage.toFromFarmTitle)
     await toFromFarmPage.selectBackLink()
 
     await landingPage.verifyStartNowButton('Start now')

@@ -16,7 +16,7 @@ describe('To from farm page test', () => {
 
   it('Should verify that the page errors when no option is selected', async () => {
     await toFromFarmPage.toFromFarmErrorTest(
-      'Select if you are moving cattle on or off your farm'
+      toFromFarmPage.toFromFarmErrorMessage
     )
   })
 

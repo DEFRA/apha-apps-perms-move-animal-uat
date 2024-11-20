@@ -7,7 +7,7 @@ class LandingPage extends Page {
     return $('[data-testid="start-now-btn"]')
   }
 
-  get pageTitle() {
+  get landingPageTitleText() {
     return 'Apply for a Bovine Tuberculosis (TB) movement licence'
   }
 

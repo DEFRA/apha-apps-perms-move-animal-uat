@@ -11,6 +11,10 @@ class ToFromFarmPage extends Page {
     return 'Are you moving the cattle on or off your farm or premises?'
   }
 
+  get toFromFarmErrorMessage() {
+    return 'Select if you are moving cattle on or off your farm'
+  }
+
   get onThefarmRadio() {
     return $('#on-farm-radio')
   }
