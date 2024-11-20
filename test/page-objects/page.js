@@ -29,6 +29,20 @@ class Page {
     return await browser.getTitle()
   }
 
+  getInputField(id) {
+    return $(`#${id}`)
+  }
+
+  // Function to generate error element selectors
+  getErrorElement(id) {
+    return $(`#${id}-error`)
+  }
+
+  // Function to generate error link selectors
+  getErrorLink(id) {
+    return $(`[href="#${id}"]`)
+  }
+
   // Reusable wait function
   async waitForElement(element, options = { timeout: 10000, visible: true }) {
     await element.waitForExist({ timeout: options.timeout })
@@ -113,6 +127,22 @@ class Page {
   async verifySummaryErrorLink(linkElement, fieldElement) {
     await this.selectElement(linkElement)
     await fieldElement.isFocused()
+  }
+
+  async verifyErrorsNotVisible(errorElements = []) {
+    const visibleErrors = []
+
+    for (const errorElement of errorElements) {
+      if (errorElement && (await errorElement.isDisplayed())) {
+        visibleErrors.push(await errorElement.getText())
+      }
+    }
+
+    if (visibleErrors.length > 0) {
+      throw new Error(
+        `The following errors are visible: ${visibleErrors.join(', ')}`
+      )
+    }
   }
 
   async open(path) {

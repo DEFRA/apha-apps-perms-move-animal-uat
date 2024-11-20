@@ -4,7 +4,7 @@ import loadPageAndVerifyTitle from '~/test/helpers/loadPageHelper'
 import parishHoldingNumberPage from '../page-objects/parishHoldingNumberPage'
 
 describe('Full journey test 1', () => {
-  beforeEach('Navigate to the landing page', async () => {
+  beforeEach('Reset browser state and navigate to page', async () => {
     await browser.reloadSession()
     await loadPageAndVerifyTitle('', landingPage.pageTitle)
   })

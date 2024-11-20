@@ -5,8 +5,8 @@ import loadPageAndVerifyTitle from '~/test/helpers/loadPageHelper'
 import parishHoldingNumberPage from '../page-objects/parishHoldingNumberPage'
 import exitPage from '../page-objects/exitPage'
 
-describe('Home page', () => {
-  beforeEach('Navigate to or from farm page', async () => {
+describe('To from farm page test', () => {
+  beforeEach('Reset browser state and navigate to page', async () => {
     await browser.reloadSession()
     await loadPageAndVerifyTitle(
       toFromFarmPage.urlPath,
@@ -30,6 +30,9 @@ describe('Home page', () => {
   it('Should choose an option and check its maintained', async () => {
     await toFromFarmPage.selectOffFarmAndContinue()
     await expect(parishHoldingNumberPage.cphNumberInput).toBeDisplayed()
+    await parishHoldingNumberPage.verifyPageHeading(
+      parishHoldingNumberPage.parishHoldingTitle
+    )
     await browser.back()
     await expect(toFromFarmPage.offThefarmRadio).toBeSelected()
   })

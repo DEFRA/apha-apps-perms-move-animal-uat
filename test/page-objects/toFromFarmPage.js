@@ -3,6 +3,14 @@ import { $ } from '@wdio/globals'
 import { Page } from 'page-objects/page'
 
 class ToFromFarmPage extends Page {
+  get urlPath() {
+    return 'to-or-from-own-premises'
+  }
+
+  get toFromFarmTitle() {
+    return 'Are you moving the cattle on or off your farm?'
+  }
+
   get onThefarmRadio() {
     return $('#on-farm-radio')
   }
@@ -17,14 +25,6 @@ class ToFromFarmPage extends Page {
 
   get pageError() {
     return $('#onOffFarm-error')
-  }
-
-  get toFromFarmTitle() {
-    return 'Are you moving the cattle on or off your farm or premises?'
-  }
-
-  get urlPath() {
-    return 'to-or-from-own-premises'
   }
 
   async selectOnFarmAndContinue() {

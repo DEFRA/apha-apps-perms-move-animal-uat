@@ -3,6 +3,14 @@ import { $ } from '@wdio/globals'
 import { Page } from 'page-objects/page'
 
 class ParishHoldingNumberPage extends Page {
+  get urlPath() {
+    return 'cph-number'
+  }
+
+  get parishHoldingTitle() {
+    return 'What is the County Parish Holding (CPH) number of your farm or premises where the animals are moving off?'
+  }
+
   get cphNumberInput() {
     return $('#cph-number')
   }
@@ -11,12 +19,12 @@ class ParishHoldingNumberPage extends Page {
     return $('#cph-number-error')
   }
 
-  get urlPath() {
-    return 'cph-number'
+  get invalidFormatError() {
+    return 'Enter the CPH number in the correct format, for example, 12/345/6789'
   }
 
-  get parishHoldingTitle() {
-    return 'What is the County Parish Holding (CPH) number of your farm or premises where the animals are moving off?'
+  get noInputError() {
+    return 'Enter the farm or premises CPH number'
   }
 
   async inputParishHoldingNumberAndContinue(text) {
