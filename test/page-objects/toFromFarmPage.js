@@ -11,6 +11,10 @@ class ToFromFarmPage extends Page {
     return $('#off-farm-radio')
   }
 
+  get onFarmSummaryErrorLink() {
+    return $('[href="#on-farm-radio"]')
+  }
+
   get pageError() {
     return $('#onOffFarm-error')
   }
@@ -36,6 +40,10 @@ class ToFromFarmPage extends Page {
   async toFromFarmErrorTest(errorMessage) {
     await super.selectContinue()
     await super.verifyErrorsOnPage(this.pageError, errorMessage)
+    await super.verifySummaryErrorLink(
+      this.onFarmSummaryErrorLink,
+      this.onThefarmRadio
+    )
   }
 }
 

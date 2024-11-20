@@ -110,6 +110,11 @@ class Page {
     await expect(await browser.getTitle()).toMatch(/^Error:/)
   }
 
+  async verifySummaryErrorLink(linkElement, fieldElement) {
+    await this.selectElement(linkElement)
+    await fieldElement.isFocused()
+  }
+
   async open(path) {
     await browser.url(path)
   }
