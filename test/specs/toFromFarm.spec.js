@@ -31,7 +31,7 @@ describe('To from farm page test', () => {
     await toFromFarmPage.selectOffFarmAndContinue()
     await expect(parishHoldingNumberPage.cphNumberInput).toBeDisplayed()
     await parishHoldingNumberPage.verifyPageHeading(
-      'What is the County Parish Holding (CPH) number of your farm or premises where the animals are moving off?'
+      parishHoldingNumberPage.parishHoldingTitle
     )
     await browser.back()
     await expect(toFromFarmPage.offThefarmRadio).toBeSelected()
