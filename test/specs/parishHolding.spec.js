@@ -3,8 +3,8 @@ import { browser } from '@wdio/globals'
 import loadPageAndVerifyTitle from '~/test/helpers/loadPageHelper'
 import ParishHoldingNumberPage from '../page-objects/parishHoldingNumberPage'
 
-describe('Home page', () => {
-  beforeEach('Parish holding page test', async () => {
+describe('Paris holding page test', () => {
+  beforeEach('Reset browser state and navigate to page', async () => {
     await browser.reloadSession()
     await loadPageAndVerifyTitle(
       ParishHoldingNumberPage.urlPath,
@@ -15,28 +15,28 @@ describe('Home page', () => {
   it('Should verify that page errors when nothing is entered', async () => {
     await ParishHoldingNumberPage.parishHoldingErrorTest(
       '',
-      'Enter the farm or premises CPH number'
+      ParishHoldingNumberPage.noInputError
     )
   })
 
   it('Should verify that page errors when not enough is entered', async () => {
     await ParishHoldingNumberPage.parishHoldingErrorTest(
       '12/345/678',
-      'Enter the CPH number in the correct format, for example, 12/345/6789'
+      ParishHoldingNumberPage.invalidFormatError
     )
   })
 
   it('Should verify that page errors when too much is entered', async () => {
     await ParishHoldingNumberPage.parishHoldingErrorTest(
       '12/345/67891',
-      'Enter the CPH number in the correct format, for example, 12/345/6789'
+      ParishHoldingNumberPage.invalidFormatError
     )
   })
 
   it('Should verify that page errors when letters are entered', async () => {
     await ParishHoldingNumberPage.parishHoldingErrorTest(
       'te/tes/test',
-      'Enter the CPH number in the correct format, for example, 12/345/6789'
+      ParishHoldingNumberPage.invalidFormatError
     )
   })
 
@@ -53,7 +53,7 @@ describe('Home page', () => {
   it('Should verify that page errors when letters and spaces and numbers are included', async () => {
     await ParishHoldingNumberPage.parishHoldingErrorTest(
       '12 / tes / 67dh',
-      'Enter the CPH number in the correct format, for example, 12/345/6789'
+      ParishHoldingNumberPage.invalidFormatError
     )
   })
 

@@ -4,8 +4,8 @@ import landingPage from '~/test/page-objects/landingPage'
 import toFromFarmPage from '~/test/page-objects/toFromFarmPage'
 import loadPageAndVerifyTitle from '~/test/helpers/loadPageHelper'
 
-describe('Home page', () => {
-  beforeEach('Navigate to landing page', async () => {
+describe('Javascript disabled test', () => {
+  beforeEach('Reset browser state and navigate to landing page', async () => {
     await browser.reloadSession()
     await loadPageAndVerifyTitle('', landingPage.pageTitle)
   })

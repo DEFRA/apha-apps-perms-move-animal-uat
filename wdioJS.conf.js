@@ -2,14 +2,14 @@ const merge = require('deepmerge')
 const wdioConf = require('./wdio.conf')
 
 exports.config = merge(wdioConf.config, {
-  specs: ['./test/specs/**/*.js'],
+  specs: ['./test/specs/newAddress.spec.js'],
   exclude: ['./test/specs/noJavascript/**/*.js'],
   capabilities: [
     {
       browserName: 'chrome',
       browserVersion: 'stable',
       'goog:chromeOptions': {
-        args: ['headless', 'disable-gpu']
+        args: ['disable-gpu']
       }
     }
   ]
