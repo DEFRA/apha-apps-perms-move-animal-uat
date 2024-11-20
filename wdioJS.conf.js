@@ -9,7 +9,7 @@ exports.config = merge(wdioConf.config, {
       browserName: 'chrome',
       browserVersion: 'stable',
       'goog:chromeOptions': {
-        args: ['disable-gpu']
+        args: ['headless', 'disable-gpu']
       }
     }
   ]
