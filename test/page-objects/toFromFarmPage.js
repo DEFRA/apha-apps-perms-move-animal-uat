@@ -11,12 +11,16 @@ class ToFromFarmPage extends Page {
     return $('#off-farm-radio')
   }
 
+  get onFarmSummaryErrorLink() {
+    return $('[href="#on-farm-radio"]')
+  }
+
   get pageError() {
     return $('#onOffFarm-error')
   }
 
   get toFromFarmTitle() {
-    return 'Are you moving the cattle on or off your farm?'
+    return 'Are you moving the cattle on or off your farm or premises?'
   }
 
   get urlPath() {
@@ -36,6 +40,10 @@ class ToFromFarmPage extends Page {
   async toFromFarmErrorTest(errorMessage) {
     await super.selectContinue()
     await super.verifyErrorsOnPage(this.pageError, errorMessage)
+    await super.verifySummaryErrorLink(
+      this.onFarmSummaryErrorLink,
+      this.onThefarmRadio
+    )
   }
 }
 
