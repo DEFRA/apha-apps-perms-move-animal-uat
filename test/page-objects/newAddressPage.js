@@ -91,7 +91,7 @@ class NewAddressPage extends Page {
     return 'Enter a full UK postcode'
   }
 
-  async maxErrorLengthText(addressField) {
+  maxErrorLengthText(addressField) {
     return `${addressField} must be no longer than 255 characters`
   }
 
@@ -129,22 +129,22 @@ class NewAddressPage extends Page {
       },
       lineOneMaxLength: {
         element: await this.lineOneError(),
-        message: await this.maxErrorLengthText('Address line 1'),
+        message: this.maxErrorLengthText('Address line 1'),
         link: await this.lineOneErrorLink()
       },
       lineTwoMaxLength: {
         element: await this.lineTwoError(),
-        message: await this.maxErrorLengthText('Address line 2'),
+        message: this.maxErrorLengthText('Address line 2'),
         link: await this.lineTwoErrorLink()
       },
       townOrCityMaxLength: {
         element: await this.townOrCityError(),
-        message: await this.maxErrorLengthText('Address town'),
+        message: this.maxErrorLengthText('Address town'),
         link: await this.townOrCityErrorLink()
       },
       countyMaxLength: {
         element: await this.countyError(),
-        message: await this.maxErrorLengthText('Address county'),
+        message: this.maxErrorLengthText('Address county'),
         link: await this.countyErrorLink()
       }
     }

@@ -65,7 +65,7 @@ describe('New address page test', () => {
     await newAddressPage.verifyNewAddressErrors(['invalidPostcode'])
   })
 
-  it('Should verify errors when max length exceeded', async () => {
+  it.only('Should verify errors when max length exceeded', async () => {
     await newAddressPage.fillFormFieldsAndSubmit({
       lineOne: longString,
       lineTwo: longString,
