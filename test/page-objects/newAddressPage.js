@@ -39,8 +39,16 @@ class NewAddressPage extends Page {
     return super.getErrorElement(addressLineOneId)
   }
 
+  async lineTwoError() {
+    return super.getErrorElement(addressLineTwoId)
+  }
+
   async townOrCityError() {
     return super.getErrorElement(townOrCityId)
+  }
+
+  async countyError() {
+    return super.getErrorElement(countyId)
   }
 
   async postcodeError() {
@@ -51,8 +59,16 @@ class NewAddressPage extends Page {
     return super.getErrorLink(addressLineOneId)
   }
 
+  async lineTwoErrorLink() {
+    return super.getErrorLink(addressLineTwoId)
+  }
+
   async townOrCityErrorLink() {
     return super.getErrorLink(townOrCityId)
+  }
+
+  async countyErrorLink() {
+    return super.getErrorLink(countyId)
   }
 
   async postcodeErrorLink() {
@@ -73,6 +89,10 @@ class NewAddressPage extends Page {
 
   get invalidPostcodeErrorText() {
     return 'Enter a full UK postcode'
+  }
+
+  maxErrorLengthText(addressField) {
+    return `${addressField} must be no longer than 255 characters`
   }
 
   async getFieldMappings() {
@@ -106,6 +126,26 @@ class NewAddressPage extends Page {
         element: await this.postcodeError(),
         message: this.invalidPostcodeErrorText,
         link: await this.postcodeErrorLink()
+      },
+      lineOneMaxLength: {
+        element: await this.lineOneError(),
+        message: this.maxErrorLengthText('Address line 1'),
+        link: await this.lineOneErrorLink()
+      },
+      lineTwoMaxLength: {
+        element: await this.lineTwoError(),
+        message: this.maxErrorLengthText('Address line 2'),
+        link: await this.lineTwoErrorLink()
+      },
+      townOrCityMaxLength: {
+        element: await this.townOrCityError(),
+        message: this.maxErrorLengthText('Address town'),
+        link: await this.townOrCityErrorLink()
+      },
+      countyMaxLength: {
+        element: await this.countyError(),
+        message: this.maxErrorLengthText('Address county'),
+        link: await this.countyErrorLink()
       }
     }
   }

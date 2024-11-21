@@ -3,6 +3,9 @@ import { browser } from '@wdio/globals'
 import loadPageAndVerifyTitle from '~/test/helpers/loadPageHelper'
 import newAddressPage from '../page-objects/newAddressPage'
 
+const longString = 'a'.repeat(300)
+const longPostcode = 'SW1A2AATEST'
+
 const lineOne = '37 Made up lane'
 const lineTwo = 'Not real avenue'
 const townOrCity = 'Gotham'
@@ -60,6 +63,24 @@ describe('New address page test', () => {
       postcode: postcodeInvalid
     })
     await newAddressPage.verifyNewAddressErrors(['invalidPostcode'])
+  })
+
+  it('Should verify errors when max length exceeded', async () => {
+    await newAddressPage.fillFormFieldsAndSubmit({
+      lineOne: longString,
+      lineTwo: longString,
+      townOrCity: longString,
+      county: longString,
+      postcode: longPostcode
+    })
+
+    await newAddressPage.verifyNewAddressErrors([
+      'lineOneMaxLength',
+      'lineTwoMaxLength',
+      'townOrCityMaxLength',
+      'countyMaxLength',
+      'invalidPostcode'
+    ])
   })
 
   it('Should verify successful submission and no errors when optional fields ignored', async () => {
