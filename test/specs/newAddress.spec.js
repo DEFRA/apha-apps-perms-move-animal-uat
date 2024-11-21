@@ -4,9 +4,7 @@ import loadPageAndVerifyTitle from '~/test/helpers/loadPageHelper'
 import newAddressPage from '../page-objects/newAddressPage'
 
 const longString = 'a'.repeat(300)
-const truncatedString = 'a'.repeat(255)
 const longPostcode = 'SW1A2AATEST'
-const truncatedPostcode = 'SW1A2AATES'
 
 const lineOne = '37 Made up lane'
 const lineTwo = 'Not real avenue'
@@ -67,7 +65,7 @@ describe('New address page test', () => {
     await newAddressPage.verifyNewAddressErrors(['invalidPostcode'])
   })
 
-  it('Should truncate input fields to 256 characters on submission', async () => {
+  it('Should verify errors when max length exceeded', async () => {
     await newAddressPage.fillFormFieldsAndSubmit({
       lineOne: longString,
       lineTwo: longString,
@@ -76,17 +74,19 @@ describe('New address page test', () => {
       postcode: longPostcode
     })
 
-    await newAddressPage.verifyNoErrorsVisible()
-
-    await newAddressPage.selectBackLink()
-
-    await newAddressPage.verifyFieldValues({
-      lineOne: truncatedString,
-      lineTwo: truncatedString,
-      townOrCity: truncatedString,
-      county: truncatedString,
-      postcode: truncatedPostcode
-    })
+    await newAddressPage.verifyNewAddressErrors([
+      'lineOneMaxLength',
+      'townOrCityMaxLength',
+      'invalidPostcode'
+    ])
+    await newAddressPage.verifySummaryErrorLink(
+      await newAddressPage.lineTwoErrorLink(),
+      await newAddressPage.addressLineTwoInput()
+    )
+    await newAddressPage.verifySummaryErrorLink(
+      await newAddressPage.countyErrorLink(),
+      await newAddressPage.countyInput()
+    )
   })
 
   it('Should verify successful submission and no errors when optional fields ignored', async () => {

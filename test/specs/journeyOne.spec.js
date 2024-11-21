@@ -6,7 +6,7 @@ import newAddressPage from '../page-objects/newAddressPage'
 
 const lineOne = '37 Made up lane'
 const townOrCity = 'Gotham'
-const postcode = 'SW1A 2AA'
+const postcode = 'SW1A2AA'
 
 describe('Full journey test 1', () => {
   beforeEach('Reset browser state and navigate to page', async () => {
