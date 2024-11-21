@@ -76,17 +76,11 @@ describe('New address page test', () => {
 
     await newAddressPage.verifyNewAddressErrors([
       'lineOneMaxLength',
+      'lineTwoMaxLength',
       'townOrCityMaxLength',
+      'countyMaxLength',
       'invalidPostcode'
     ])
-    await newAddressPage.verifySummaryErrorLink(
-      await newAddressPage.lineTwoErrorLink(),
-      await newAddressPage.addressLineTwoInput()
-    )
-    await newAddressPage.verifySummaryErrorLink(
-      await newAddressPage.countyErrorLink(),
-      await newAddressPage.countyInput()
-    )
   })
 
   it('Should verify successful submission and no errors when optional fields ignored', async () => {

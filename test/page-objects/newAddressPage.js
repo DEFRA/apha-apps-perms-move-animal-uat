@@ -39,8 +39,16 @@ class NewAddressPage extends Page {
     return super.getErrorElement(addressLineOneId)
   }
 
+  async lineTwoError() {
+    return super.getErrorElement(addressLineTwoId)
+  }
+
   async townOrCityError() {
     return super.getErrorElement(townOrCityId)
+  }
+
+  async countyError() {
+    return super.getErrorElement(countyId)
   }
 
   async postcodeError() {
@@ -136,10 +144,20 @@ class NewAddressPage extends Page {
         message: this.lineOneCharacterErrorText,
         link: await this.lineOneErrorLink()
       },
+      lineTwoMaxLength: {
+        element: await this.lineTwoError(),
+        message: this.lineTwoCharacterErrorText,
+        link: await this.lineTwoErrorLink()
+      },
       townOrCityMaxLength: {
         element: await this.townOrCityError(),
         message: this.townOrCityCharacterErrorText,
         link: await this.townOrCityErrorLink()
+      },
+      countyMaxLength: {
+        element: await this.countyError(),
+        message: this.countyCharacterErrorText,
+        link: await this.countyErrorLink()
       }
     }
   }
