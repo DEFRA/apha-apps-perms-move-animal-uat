@@ -1,20 +1,19 @@
-version: "3.4"
+version: '3.4'
 
 services:
-
   apha-apps-perms-move-animal-ui:
-    image: defradigital/apha-apps-perms-move-animal-ui:${MOVE_ANIMAL_UI:-latest}  # Override the version by setting an environment variable MOVE_ANIMAL_UI=version.to.run
+    image: defradigital/apha-apps-perms-move-animal-ui:${MOVE_ANIMAL_UI:-latest} # Override the version by setting an environment variable MOVE_ANIMAL_UI=version.to.run
     ports:
-      - "3000:80"
+      - '3000:80'
     environment:
       - PORT=80
       - REDIS_HOST=redis
       - NODE_ENV=production
       - USE_SINGLE_INSTANCE_CACHE=true
       - REDIS_TLS=false
+      - SESSION_COOKIE_SECURE=false
 
   redis:
     image: redis:7.2.3-alpine3.18
     ports:
-      - "6379:6379"
-
+      - '6379:6379'
