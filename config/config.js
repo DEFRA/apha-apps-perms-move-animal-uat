@@ -2,7 +2,7 @@ module.exports = {
   logLevel: 'silent',
   maxInstance: 5,
   bail: 0,
-  specFileRetries: 0,
+  specFileRetries: 1,
   specFileRetriesDeferred: true,
   waitForTimeout: 10000,
   waitforInterval: 200,

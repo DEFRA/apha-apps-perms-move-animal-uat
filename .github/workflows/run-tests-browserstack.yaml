@@ -1,0 +1,45 @@
+name: Browserstack Tests 
+
+on:
+  workflow_dispatch: # Manually trigger the suite
+  workflow_call:     # Trigger it from another project
+jobs:
+  build:
+    name: Journey Tests
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+      - name: Clone the test suite
+        run: git clone --depth 1 https://github.com/DEFRA/apha-apps-perms-move-animal-uat.git .
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Setup the tests
+        run: npm ci --omit=dev
+
+      - name: Start docker compose
+        run: docker compose up --wait-timeout 300 -d --quiet-pull
+
+      - name: Run the whole test suite
+        env:
+          BROWSERSTACK_USER: ${{ secrets.BROWSERSTACK_USER }}
+          BROWSERSTACK_KEY: ${{ secrets.BROWSERSTACK_KEY }}
+        run: npm run test:bs
+
+      - name: debug
+        if: failure()
+        run: |
+          docker ps
+          docker logs apha-apps-perms-move-animal-ui-apha-apps-perms-move-animal-ui-1
+          # You can run commands like `docker logs service-name` here to help debug failures
+
+      - name: cleanup
+        if: always()
+        run: docker compose down
