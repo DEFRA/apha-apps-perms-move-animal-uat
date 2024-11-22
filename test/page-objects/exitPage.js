@@ -1,6 +1,7 @@
 import { $ } from '@wdio/globals'
 
 import { Page } from 'page-objects/page'
+import * as page from '../helpers/page'
 
 class ExitPage extends Page {
   get exitPageHeading() {
@@ -24,28 +25,14 @@ class ExitPage extends Page {
   }
 
   async verifyViewApplicationLink() {
-    const tbFormTitle =
+    await page.selectLinkAndVerifyTitle(
+      this.viewApplicationLink,
       'TB restricted cattle: application for movement licence in England - GOV.UK'
-
-    await super.selectElement(this.viewApplicationLink)
-    await browser.waitUntil(
-      async () => (await browser.getTitle()) === tbFormTitle,
-      {
-        timeoutMsg: `Expected page title to become ${tbFormTitle}`
-      }
     )
   }
 
   async verifyGovUkLink() {
-    const govukTitle = 'Welcome to GOV.UK'
-
-    await super.selectElement(this.govUkLink)
-    await browser.waitUntil(
-      async () => (await browser.getTitle()) === govukTitle,
-      {
-        timeoutMsg: `Expected page title to become ${govukTitle}`
-      }
-    )
+    await page.selectLinkAndVerifyTitle(this.govUkLink, 'Welcome to GOV.UK')
   }
 }
 

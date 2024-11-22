@@ -2,7 +2,7 @@ import { browser, expect } from '@wdio/globals'
 
 import landingPage from '~/test/page-objects/landingPage'
 import toFromFarmPage from '~/test/page-objects/toFromFarmPage'
-import loadPageAndVerifyTitle from '~/test/helpers/loadPageHelper'
+import { loadPageAndVerifyTitle } from '~/test/helpers/page'
 
 describe('Landing page test', () => {
   beforeEach('Reset browser state and navigate to page', async () => {
