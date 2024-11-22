@@ -24,22 +24,28 @@ class ExitPage extends Page {
   }
 
   async verifyViewApplicationLink() {
-    await super.selectElement(this.viewApplicationLink)
-    const title = await browser.getTitle()
-    if (
-      title !==
+    const tbFormTitle =
       'TB restricted cattle: application for movement licence in England - GOV.UK'
-    ) {
-      throw new Error(`Unexpected title: ${title}`)
-    }
+
+    await super.selectElement(this.viewApplicationLink)
+    await browser.waitUntil(
+      async () => (await browser.getTitle()) === tbFormTitle,
+      {
+        timeoutMsg: `Expected page title to become ${tbFormTitle}`
+      }
+    )
   }
 
   async verifyGovUkLink() {
+    const govukTitle = 'Welcome to GOV.UK'
+
     await super.selectElement(this.govUkLink)
-    const title = await browser.getTitle()
-    if (title !== 'Welcome to GOV.UK') {
-      throw new Error(`Unexpected title: ${title}`)
-    }
+    await browser.waitUntil(
+      async () => (await browser.getTitle()) === govukTitle,
+      {
+        timeoutMsg: `Expected page title to become ${govukTitle}`
+      }
+    )
   }
 }
 
