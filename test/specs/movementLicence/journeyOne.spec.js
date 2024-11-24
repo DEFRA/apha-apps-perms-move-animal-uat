@@ -1,8 +1,8 @@
-import landingPage from '~/test/page-objects/landingPage'
-import toFromFarmPage from '~/test/page-objects/toFromFarmPage'
+import landingPage from '~/test/page-objects/movementLicence/landingPage'
+import toFromFarmPage from '~/test/page-objects/movementLicence/toFromFarmPage'
 import { loadPageAndVerifyTitle } from '~/test/helpers/page'
-import parishHoldingNumberPage from '../page-objects/parishHoldingNumberPage'
-import newAddressPage from '../page-objects/newAddressPage'
+import parishHoldingNumberPage from '../page-objects/movementLicence/parishHoldingNumberPage'
+import newAddressPage from '../page-objects/movementLicence/newAddressPage'
 
 const lineOne = '37 Made up lane'
 const townOrCity = 'Gotham'

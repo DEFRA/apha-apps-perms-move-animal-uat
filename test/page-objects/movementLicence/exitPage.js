@@ -1,7 +1,7 @@
 import { $ } from '@wdio/globals'
 
 import { Page } from 'page-objects/page'
-import * as page from '../helpers/page'
+import * as page from '../../helpers/page'
 
 class ExitPage extends Page {
   get exitPageHeading() {

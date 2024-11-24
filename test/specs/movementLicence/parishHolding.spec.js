@@ -1,7 +1,7 @@
 import { browser } from '@wdio/globals'
 
 import { loadPageAndVerifyTitle } from '~/test/helpers/page'
-import ParishHoldingNumberPage from '../page-objects/parishHoldingNumberPage'
+import ParishHoldingNumberPage from '../page-objects/movementLicence/parishHoldingNumberPage'
 
 describe('Paris holding page test', () => {
   beforeEach('Reset browser state and navigate to page', async () => {
