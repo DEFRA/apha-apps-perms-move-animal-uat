@@ -21,25 +21,23 @@ export const selectElement = async (element, hidden = false) => {
   }
 }
 
-export const loadPageAndVerifyTitle = async (path, pageTitle) => {
-  await browser.url(path)
-  await browser.waitUntil(
-    async () => (await browser.getTitle()) === pageTitle,
-    {
-      timeout: 10000,
-      timeoutMsg: `Failed to load page with title: ${pageTitle}`
-    }
-  )
-}
-
-export const selectLinkAndVerifyTitle = async (linkElement, pageTitle) => {
-  await selectElement(linkElement)
+export const verifyPageTitle = async (pageTitle) => {
   await browser.waitUntil(
     async () => (await browser.getTitle()) === pageTitle,
     {
       timeoutMsg: `Expected page title to become ${pageTitle}`
     }
   )
+}
+
+export const loadPageAndVerifyTitle = async (path, pageTitle) => {
+  await browser.url(path)
+  await verifyPageTitle(pageTitle)
+}
+
+export const selectLinkAndVerifyTitle = async (linkElement, pageTitle) => {
+  await selectElement(linkElement)
+  await verifyPageTitle(pageTitle)
 }
 
 export const validateElementVisibleAndText = async (element, text) => {
