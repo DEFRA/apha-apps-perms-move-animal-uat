@@ -12,15 +12,15 @@ class ParishHoldingNumberPage extends Page {
     return 'What is the County Parish Holding (CPH) number of your farm or premises where the animals are moving off?'
   }
 
-  async cphNumberInput() {
+  cphNumberInput() {
     return super.getInputField(cphId)
   }
 
-  async cphInputFieldError() {
+  cphInputFieldError() {
     return super.getErrorElement(cphId)
   }
 
-  async cphSummaryErrorLink() {
+  cphSummaryErrorLink() {
     return super.getErrorLink(cphId)
   }
 
@@ -33,16 +33,13 @@ class ParishHoldingNumberPage extends Page {
   }
 
   async inputParishHoldingNumberAndContinue(text) {
-    await page.typeIntoElement(await this.cphNumberInput(), text)
+    await page.typeIntoElement(this.cphNumberInput(), text)
     await super.selectContinue()
   }
 
   async parishHoldingErrorTest(textInput, errorMessage) {
     await this.inputParishHoldingNumberAndContinue(textInput)
-    await super.verifyErrorsOnPage(
-      await this.cphInputFieldError(),
-      errorMessage
-    )
+    await super.verifyErrorsOnPage(this.cphInputFieldError(), errorMessage)
     await super.verifySummaryErrorLink(
       await this.cphSummaryErrorLink(),
       await this.cphNumberInput()
