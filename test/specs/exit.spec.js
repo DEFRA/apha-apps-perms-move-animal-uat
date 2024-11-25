@@ -1,5 +1,5 @@
 import { loadPageAndVerifyTitle } from '~/test/helpers/page'
-import exitPage from '../../page-objects/movementLicence/exitPage'
+import exitPage from '../page-objects/exitPage'
 
 describe('Exit page test', () => {
   beforeEach('Navigate to exit page', async () => {

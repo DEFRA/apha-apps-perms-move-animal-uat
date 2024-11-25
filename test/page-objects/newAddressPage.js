@@ -1,5 +1,5 @@
 import { Page } from 'page-objects/page'
-import * as page from '../../helpers/page'
+import * as page from '../helpers/page'
 
 const addressLineOneId = 'addressLine1'
 const addressLineTwoId = 'addressLine2'

@@ -1,9 +1,9 @@
 import { browser, expect } from '@wdio/globals'
 
-import toFromFarmPage from '~/test/page-objects/movementLicence/toFromFarmPage'
+import toFromFarmPage from '~/test/page-objects/toFromFarmPage'
 import { loadPageAndVerifyTitle } from '~/test/helpers/page'
-import parishHoldingNumberPage from '../page-objects/movementLicence/parishHoldingNumberPage'
-import exitPage from '../page-objects/movementLicence/exitPage'
+import parishHoldingNumberPage from '../page-objects/parishHoldingNumberPage'
+import exitPage from '../page-objects/exitPage'
 
 describe('To from farm page test', () => {
   beforeEach('Reset browser state and navigate to page', async () => {
@@ -29,7 +29,7 @@ describe('To from farm page test', () => {
 
   it('Should choose an option and check its maintained', async () => {
     await toFromFarmPage.selectOffFarmAndContinue()
-    await expect(parishHoldingNumberPage.cphNumberInput).toBeDisplayed()
+    await expect(await parishHoldingNumberPage.cphNumberInput()).toBeDisplayed()
     await parishHoldingNumberPage.verifyPageHeading(
       parishHoldingNumberPage.parishHoldingTitle
     )
