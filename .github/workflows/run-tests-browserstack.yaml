@@ -2,7 +2,12 @@ name: Browserstack Tests
 
 on:
   workflow_dispatch: # Manually trigger the suite
-  workflow_call:     # Trigger it from another project
+  workflow_call:   
+    secrets:
+      BROWSERSTACK_USER:
+        required: true
+      BROWSERSTACK_KEY:
+        required: true  # Trigger it from another project
 jobs:
   build:
     name: Journey Tests
