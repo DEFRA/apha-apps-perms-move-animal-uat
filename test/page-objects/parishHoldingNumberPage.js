@@ -41,8 +41,8 @@ class ParishHoldingNumberPage extends Page {
     await this.inputParishHoldingNumberAndContinue(textInput)
     await super.verifyErrorsOnPage(this.cphInputFieldError(), errorMessage)
     await super.verifySummaryErrorLink(
-      await this.cphSummaryErrorLink(),
-      await this.cphNumberInput()
+      this.cphSummaryErrorLink(),
+      this.cphNumberInput()
     )
   }
 }
