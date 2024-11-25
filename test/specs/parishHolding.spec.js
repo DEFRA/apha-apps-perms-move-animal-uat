@@ -45,11 +45,11 @@ describe('Paris holding page test', () => {
       ' 12 / 345 / 6789 '
     )
     await expect(
-      await ParishHoldingNumberPage.cphInputFieldError()
+      ParishHoldingNumberPage.cphInputFieldError()
     ).not.toBeDisplayed()
     await ParishHoldingNumberPage.selectBackLink()
     await browser.refresh()
-    await expect(await ParishHoldingNumberPage.cphNumberInput()).toHaveValue(
+    await expect(ParishHoldingNumberPage.cphNumberInput()).toHaveValue(
       '12/345/6789'
     )
   })
@@ -66,7 +66,7 @@ describe('Paris holding page test', () => {
       '12/345/6789'
     )
     await expect(
-      await ParishHoldingNumberPage.cphInputFieldError()
+      ParishHoldingNumberPage.cphInputFieldError()
     ).not.toBeDisplayed()
     await expect(ParishHoldingNumberPage.errorSummary).not.toBeDisplayed()
   })
@@ -77,10 +77,10 @@ describe('Paris holding page test', () => {
       validInput
     )
     await expect(
-      await ParishHoldingNumberPage.cphInputFieldError()
+      ParishHoldingNumberPage.cphInputFieldError()
     ).not.toBeDisplayed()
     await ParishHoldingNumberPage.selectBackLink()
-    await expect(await ParishHoldingNumberPage.cphNumberInput()).toHaveValue(
+    await expect(ParishHoldingNumberPage.cphNumberInput()).toHaveValue(
       validInput
     )
   })
